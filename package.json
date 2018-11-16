@@ -1,0 +1,8 @@
+{
+  "name": "azure-devops-webpack-bundle-analyzer",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "vss-web-extension-sdk": "^5.141.0"
+  }
+}
