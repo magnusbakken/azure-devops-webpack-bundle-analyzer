@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "azure-devops-webpack-bundle-analyzer",
     "publisher": "MagnusGrindalBakken",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "name": "Azure DevOps Webpack Bundle Analyzer",
     "description": "Show output from webpack-bundle-analyzer as a report for Azure DevOps builds.",
     "public": false,
