@@ -1,28 +1,33 @@
 import process = require('process');
 import child_process = require('child_process');
-import tl = require('azure-pipelines-task-lib/task');
+import tasklib = require('azure-pipelines-task-lib/task');
 
 const isWindows = process.platform === "win32";
 
 function execute(statsJsonPath: string): void {
-    const args = ['node_modules\\.bin\\webpack-bundle-analyzer', statsJsonPath, '--mode=static', '--report=report.html', '--no-open'];
+    const args = [statsJsonPath, '--mode=static', '--report=report.html', '--no-open'];
     if (isWindows) {
-        child_process.execFileSync('cmd.exe', ['/c', ...args]);
+        child_process.execFileSync('cmd.exe', ['/c', 'node_modules\\.bin\\webpack-bundle-analyzer.cmd', ...args]);
     } else {
-        const [file, ...otherArgs] = args;
-        child_process.spawnSync(file, otherArgs);
+        child_process.spawnSync('node_modules/.bin/webpack-bundle-analyzer', args);
     }
+}
+
+function attachReport(reportPath: string): void {
+    console.log(`##vso[task.addattachment type=wba-report name=report.html]${reportPath}`)
 }
 
 async function run(): Promise<void> {
     try {
-        const statsJsonPath: string = tl.getPathInput('statsJsonPath', true, true);
-        console.log('Starting...');
+        const statsJsonPath: string = tasklib.getPathInput('statsJsonPath', true, true);
+        console.debug('Generating report...');
         execute(statsJsonPath);
-        console.log('Done');
+        console.debug('Report generated!');
+        console.debug('Attaching generated report...');
+        attachReport('report.html');
     } catch (err) {
         console.log(err);
-        tl.setResult(tl.TaskResult.Failed, err.message);
+        tasklib.setResult(tasklib.TaskResult.Failed, err.message);
     }
 }
 
