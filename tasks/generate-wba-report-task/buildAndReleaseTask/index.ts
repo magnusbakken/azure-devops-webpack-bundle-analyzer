@@ -19,6 +19,7 @@ function attachReport(reportPath: string): void {
 
 async function run(): Promise<void> {
     try {
+        console.debug(`Command: ${process.argv.join(' ')}`);
         const statsJsonPath: string = tasklib.getPathInput('statsJsonPath', true, true);
         console.debug('Generating report...');
         execute(statsJsonPath);
