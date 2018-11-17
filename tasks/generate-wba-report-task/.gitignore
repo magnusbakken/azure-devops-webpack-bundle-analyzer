@@ -78,6 +78,7 @@ typings/
 # Extension development
 *.vsix
 
-# Build output
+# Extension output
 index.js
 .taskkey
+report.html

@@ -4,7 +4,8 @@
   "license": "MIT",
   "dependencies": {
     "azure-pipelines-task-lib": "^2.7.5",
-    "vss-web-extension-sdk": "^5.141.0"
+    "vss-web-extension-sdk": "^5.141.0",
+    "webpack-bundle-analyzer": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "^10.12.9",
