@@ -1,5 +1,5 @@
 {
-    "id": "generate-webpack-bundle-analyzer-report-task",
+    "id": "5af26a0c-ed39-4c0c-b68a-011b6b73a231",
     "name": "GenerateWebpackBundleAnalyzerReportTask",
     "friendlyName": "Generate webpack-bundle-analyzer Report",
     "description": "Generates a webpack-bundle-analyzer report.",
@@ -8,7 +8,7 @@
     "author": "Magnus Grindal Bakken",
     "version": {
         "Major": 0,
-        "Minor": 2,
+        "Minor": 3,
         "Patch": 0
     },
     "instanceNameFormat": "webpack-bundle-analyzer",
