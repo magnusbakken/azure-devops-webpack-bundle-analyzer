@@ -1,0 +1,30 @@
+{
+    "id": "generate-webpack-bundle-analyzer-report-task",
+    "name": "GenerateWebpackBundleAnalyzerReportTask",
+    "friendlyName": "Generate webpack-bundle-analyzer Report",
+    "description": "Generates a webpack-bundle-analyzer report.",
+    "helpMarkDown": "For more details, see https://github.com/webpack-contrib/webpack-bundle-analyzer.",
+    "category": "Utility",
+    "author": "Magnus Grindal Bakken",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "webpack-bundle-analyzer",
+    "inputs": [
+        {
+            "name": "statsJsonFile",
+            "type": "filePath",
+            "label": "stats.json file path",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The path to the stats.json file to analyze."
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}
