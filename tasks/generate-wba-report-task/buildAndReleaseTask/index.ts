@@ -19,12 +19,12 @@ function attachReport(reportPath: string): void {
 
 async function run(): Promise<void> {
     try {
-        console.debug(`Command: ${process.argv.join(' ')}`);
+        console.log(`Command: ${process.argv.join(' ')}`);
         const statsJsonPath: string = tasklib.getPathInput('statsJsonPath', true, true);
-        console.debug('Generating report...');
+        console.log('Generating report...');
         execute(statsJsonPath);
-        console.debug('Report generated!');
-        console.debug('Attaching generated report...');
+        console.log('Report generated!');
+        console.log('Attaching generated report...');
         attachReport('report.html');
     } catch (err) {
         console.log(err);

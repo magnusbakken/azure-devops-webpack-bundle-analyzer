@@ -8,13 +8,13 @@
     "author": "Magnus Grindal Bakken",
     "version": {
         "Major": 0,
-        "Minor": 3,
+        "Minor": 7,
         "Patch": 0
     },
     "instanceNameFormat": "webpack-bundle-analyzer",
     "inputs": [
         {
-            "name": "statsJsonFile",
+            "name": "statsJsonPath",
             "type": "filePath",
             "label": "stats.json file path",
             "defaultValue": "",
