@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "generate-webpack-bundle-analyzer-report-task",
     "publisher": "MagnusGrindalBakken",
-    "version": "0.7.0",
+    "version": "0.7.4",
     "name": "Generate webpack-bundle-analyzer Report",
     "description": "Generate a report from webpack-bundle-analyzer using an existing stats.json file.",
     "public": false,

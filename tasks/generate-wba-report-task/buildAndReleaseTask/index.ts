@@ -1,20 +1,23 @@
 import process = require('process');
 import child_process = require('child_process');
 import tasklib = require('azure-pipelines-task-lib/task');
+import path = require('path');
 
 const isWindows = process.platform === "win32";
 
-function execute(statsJsonPath: string): void {
-    const args = [statsJsonPath, '--mode=static', '--report=report.html', '--no-open'];
+function execute(statsJsonPath: string, reportOutputPath: string): void {
+    const args = [statsJsonPath, '--mode=static', `--report=${reportOutputPath}`, '--no-open'];
     if (isWindows) {
-        child_process.execFileSync('cmd.exe', ['/c', 'node_modules\\.bin\\webpack-bundle-analyzer.cmd', ...args]);
+        const analyzerPath = path.join(__dirname, 'node_modules\\.bin\\webpack-bundle-analyzer.cmd');
+        child_process.execFileSync('cmd.exe', ['/c', analyzerPath, ...args]);
     } else {
-        child_process.spawnSync('node_modules/.bin/webpack-bundle-analyzer', args);
+        const analyzerPath = path.join(__dirname, 'node_modules\\.bin\\webpack-bundle-analyzer');
+        child_process.spawnSync(analyzerPath, args);
     }
 }
 
 function attachReport(reportPath: string): void {
-    console.log(`##vso[task.addattachment type=wba-report name=report.html]${reportPath}`)
+    console.log(`##vso[task.addattachment type=wba-report;name=report]${reportPath}`)
 }
 
 async function run(): Promise<void> {
@@ -22,10 +25,11 @@ async function run(): Promise<void> {
         console.log(`Command: ${process.argv.join(' ')}`);
         const statsJsonPath: string = tasklib.getPathInput('statsJsonPath', true, true);
         console.log('Generating report...');
-        execute(statsJsonPath);
+        const reportOutputPath = path.join(__dirname, 'report.html');
+        execute(statsJsonPath, reportOutputPath);
         console.log('Report generated!');
         console.log('Attaching generated report...');
-        attachReport('report.html');
+        attachReport(reportOutputPath);
     } catch (err) {
         console.log(err);
         tasklib.setResult(tasklib.TaskResult.Failed, err.message);
